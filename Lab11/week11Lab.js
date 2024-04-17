@@ -37,11 +37,17 @@
 	* Step 3: In the "replaceTextInDiv" function, after replacing the text in the DIV make sure to clear out the input value.
 	* 
 	* ↓ YOUR CODE HERE ↓ */
+let div = $('.put-here');
+let input = $('#input-value');
 
+function replaceTextInDiv(){
+  let newText = input.val();
 
+  div.text(newText);
 
+  input.val("");
 
-
+}
 
 
 
@@ -52,13 +58,13 @@
  
 /* In the HTML file, there is an image of a dog in the DIV with a class name of "dog".  You will programmatically add 2 more images, one before the dog DIV and another image after the dog DIV.
 	* Step 1: Insert a DIV element with an IMAGE nested inside BEFORE the dog DIV. The image should be: <img src='images/fish.png' width='200'>.(See documentation: https://api.jquery.com/before/)
-	* Step 2: Insert a DIV element with an IMAGE nested inside BEFORE the dog DIV. The image should be:<img src='images/cat.png' width='200'>. (See documentation: https://api.jquery.com/after/)
+	* Step 2: Insert a DIV element with an IMAGE nested inside AFTER the dog DIV. The image should be:<img src='images/cat.png' width='200'>. (See documentation: https://api.jquery.com/after/)
 	* Step 3: When done, there should be three images on the screen: fish, dog, cat. 
 	* 
 	* ↓ YOUR CODE HERE ↓ */
 
-
-	
+$(".dog").before("<div><img src='images/fish.png' width='200'></div>");
+$(".dog").after("<div><img src='images/cat.png' width='200'></div>");
 
 
 
@@ -75,7 +81,7 @@
 	*
 	* ↓ YOUR CODE HERE ↓ */
 
-
+$('#lorem2').remove();
 
 
 	
@@ -110,8 +116,12 @@ $.get(CATS_API_URL, (data)=> {
  	* 
  	* ↓ YOUR CODE HERE ↓ */
 
-
-
+let JOKES_API_URL = 'https://official-joke-api.appspot.com/random_joke';
+$.get(JOKES_API_URL, (data)=> {
+  console.log(data);
+  $(".jokes").prepend(`<p>${data.setup}</p>`);
+  $(".jokes").append(`<p>${data.punchline}</p>`);
+});
 
 
 
@@ -166,6 +176,15 @@ $.get(CATS_API_URL, (data)=> {
 	* 
 	*
 	* ↓ YOUR CODE HERE ↓ */
+$.get('http://localhost:3000/gradebook/7', (data)=> {
+  console.log(data);
+  $('.result').text(data.firstname + " " + data.lastname + ", Grade: "  + data.grade + "%");
+});
+
+$.get('http://localhost:3000/gradebook/8', (data)=> {
+  console.log(data);
+  $('.new').text(data.firstname + " " + data.lastname + ", Grade: "  + data.grade + "%");
+});
 
 
 	
@@ -203,7 +222,21 @@ $(".test").on("click", function(){
 	* 
 	*
 	* ↓ YOUR CODE HERE ↓ */
-
+  $(".postBtn").on("click", function(){
+	
+    let fname = $('#firstname').val();
+    let lname = $('#lastname').val();
+    let grade = $('#grade').val();
+    
+    $.post("http://localhost:3000/gradebook", 
+        { 
+            "firstname": fname,
+            "lastname": lname,
+            "grade": grade    
+        }
+    );
+  
+  });
 
 
 
