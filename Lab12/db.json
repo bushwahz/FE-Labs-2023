@@ -24,6 +24,11 @@
       "fullName": "Tammy Kunde",
       "researchAssignment": "bird",
       "id": 5
+    },
+    {
+      "fullName": "Steve Irwin",
+      "researchAssignment": "ctocodile",
+      "id": 6
     }
   ]
 }
